@@ -1,0 +1,68 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme {
+  /* Typography */
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  
+  /* Colors */
+  --color-primary-500: #006FFF;
+  --color-primary-600: #2563EB;
+  --color-accent: #00D2FF;
+  --color-bg-main: #FFFFFF;
+  --color-bg-soft: #F4F4F5;
+  --color-text-main: #0F172A;
+  --color-text-muted: #64748B;
+  --color-border-soft: #E2E8F0;
+
+  /* Shadow - Soft & Flat */
+  --shadow-tech: none;
+  --shadow-tech-hover: 0 8px 20px -4px rgba(15, 23, 42, 0.08);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border-soft);
+}
+
+.tech-card {
+  background: var(--color-bg-soft);
+  border: 1px solid rgba(15, 23, 42, 0.04);
+  border-radius: 24px;
+  box-shadow: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tech-card:hover {
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.1);
+}
+
+.tech-gradient-text {
+  background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
