@@ -2,8 +2,8 @@
 const localePath = useLocalePath()
 
 useSeoMeta({
-  title: 'About audio-converters - Secure PCM Player & Audio Tools',
-  description: 'Learn about audio-converters, your primary choice for high-quality audio playback and conversion. Specializing in pcm player, pcm convert, and online recorder tools with absolute privacy.'
+  title: 'About audio-converters - Online PCM Player & Audio Converter',
+  description: 'Learn about audio-converters, a privacy-first online PCM player and audio converter for raw PCM, WAV, MP3, and Opus. Play headerless PCM files and convert formats entirely in your browser.'
 })
 </script>
 
@@ -18,16 +18,16 @@ useSeoMeta({
           </NuxtLink>
         </div>
         <div class="border-b border-gray-100 pb-6 text-center">
-          <h1 class="text-4xl font-bold text-gray-900">About audio-converters</h1>
+          <h1 class="text-4xl font-bold text-gray-900">About Our Online PCM Player & Audio Converter</h1>
           <p class="text-lg text-gray-500 mt-4 leading-relaxed">
-            Empowering engineers and sound enthusiasts with fast, secure, and professional-grade audio tools.
+            audio-converters helps engineers and creators play raw PCM, convert audio formats, and process recordings privately in the browser.
           </p>
         </div>
 
         <section class="space-y-4">
           <h2 class="text-2xl font-semibold text-gray-800">Our Mission</h2>
           <p class="text-gray-600 leading-relaxed text-lg">
-            audio-converters was founded with one goal in mind: to simplify the complex workflows associated with digital audio processing. Whether you're debugging embedded PCM streams or converting high-fidelity recordings, we provide the tools you need right in your browser.
+            audio-converters was founded to simplify digital audio workflows. Whether you need an online PCM player for headerless .pcm/.raw dumps or an audio converter for WAV, MP3, and Opus, everything runs locally in your browser with no server uploads.
           </p>
         </section>
 
@@ -77,9 +77,12 @@ useSeoMeta({
           </p>
         </section>
 
-        <div class="pt-8 text-center">
-          <UButton :to="localePath('/')" color="neutral" variant="solid" shadow="md" size="lg" icon="i-heroicons-play-circle">
-            Try the Audio Player
+        <div class="pt-8 flex flex-wrap items-center justify-center gap-3">
+          <UButton :to="localePath('/pcm-player')" color="primary" shadow="md" size="lg" icon="i-heroicons-play-circle">
+            Open Online PCM Player
+          </UButton>
+          <UButton :to="localePath('/pcm-to-wav')" color="neutral" variant="outline" size="lg">
+            PCM to WAV Converter
           </UButton>
         </div>
       </div>

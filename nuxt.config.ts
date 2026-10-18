@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+// Canonical origin for SEO tags, sitemap, and hreflang.
+const siteUrl = 'https://audio-converters.net'
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
@@ -29,8 +32,13 @@ export default defineNuxtConfig({
       },
     },
   },
+  runtimeConfig: {
+    public: {
+      siteUrl
+    }
+  },
   site: {
-    url: 'https://audio-converters.net',
+    url: siteUrl,
     name: 'audio-converters - Professional PCM Audio Tools',
     description: 'Professional online PCM player and audio converter powered by WebAssembly. Supporting PCM, MP3, WAV, and OPUS.'
   },
@@ -62,11 +70,13 @@ export default defineNuxtConfig({
   },
   modules: ['@nuxt/ui', '@nuxtjs/i18n'],
   i18n: {
+    baseUrl: siteUrl,
+    vueI18n: 'i18n.config.ts',
     locales: [
       { code: 'en', name: 'English', language: 'en-US' },
-      { code: 'zh', name: '中文', language: 'zh-CN' },
-      { code: 'ja', name: '日本語', language: 'ja-JP' },
-      { code: 'ko', name: '한국어', language: 'ko-KR' }
+      { code: 'zh', name: 'Chinese', language: 'zh-CN' },
+      { code: 'ja', name: 'Japanese', language: 'ja-JP' },
+      { code: 'ko', name: 'Korean', language: 'ko-KR' }
     ],
     defaultLocale: 'en',
     strategy: 'prefix_and_default',

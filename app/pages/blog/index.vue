@@ -11,9 +11,13 @@ const paginatedPosts = computed(() => {
   return BLOG_POSTS.slice(start, start + pageSize)
 })
 
+const { t } = useI18n()
+
 useSeoMeta({
-  title: 'Engineering Blog - audio-converters',
-  description: 'Learn about audio engineering, digital signal processing, and more on our blog.'
+  title: () => t('blogIndexTitle'),
+  description: () => t('blogIndexDescription'),
+  ogTitle: () => t('blogIndexTitle'),
+  ogDescription: () => t('blogIndexDescription')
 })
 </script>
 
@@ -22,12 +26,20 @@ useSeoMeta({
     <div class="mb-16 text-center">
       <NuxtLink :to="localePath('/')" class="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-blue-600 transition-colors mb-6">
         <UIcon name="i-heroicons-arrow-left" />
-        Back to Home
+        {{ t('blogBackHome') }}
       </NuxtLink>
-      <h1 class="text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">Engineering Blog</h1>
-      <p class="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
-        Deep dives into audio technology, digital processing, and web development.
+      <h1 class="text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">{{ t('blogIndexHeading') }}</h1>
+      <p class="text-xl text-gray-500 max-w-3xl mx-auto leading-relaxed">
+        {{ t('blogIndexLead') }}
       </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <UButton :to="localePath('/pcm-player')" color="primary" size="md" class="rounded-xl">
+          {{ t('blogCtaPcmPlayer') }}
+        </UButton>
+        <UButton :to="localePath('/pcm-to-wav')" color="neutral" variant="outline" size="md" class="rounded-xl">
+          {{ t('blogCtaPcmToWav') }}
+        </UButton>
+      </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">

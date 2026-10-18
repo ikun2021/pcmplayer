@@ -1,6 +1,6 @@
 import { BLOG_POSTS } from '../../app/utils/blog-data'
 
-const SITE_URL = 'https://audio-converters.net'
+const DEFAULT_SITE_URL = 'https://audio-converters.net'
 
 const LOCALES = [
   { hreflang: 'en', prefix: '' },
@@ -35,7 +35,7 @@ export const toIsoDate = (input: string) => {
   return `${year}-${month}-${day}`
 }
 
-const absoluteUrl = (pathname: string) => new URL(pathname, SITE_URL).toString()
+const absoluteUrl = (siteUrl: string, pathname: string) => new URL(pathname, siteUrl).toString()
 
 const localizedPath = (prefix: string, path: string) => {
   if (path === '/') return prefix || '/'
@@ -58,6 +58,8 @@ const pages = (): SitemapPage[] => {
 
   return [
     { path: '/', changefreq: 'weekly', priority: '1.0' },
+    { path: '/pcm-player', changefreq: 'weekly', priority: '0.95' },
+    { path: '/pcm-to-wav', changefreq: 'weekly', priority: '0.95' },
     { path: '/blog', changefreq: 'weekly', priority: '0.9', lastmod: blogUpdated },
     { path: '/about', changefreq: 'monthly', priority: '0.8' },
     { path: '/contact', changefreq: 'monthly', priority: '0.6' },
@@ -67,16 +69,17 @@ const pages = (): SitemapPage[] => {
   ]
 }
 
-export const buildSitemapXml = () => {
+export const buildSitemapXml = (siteUrl = DEFAULT_SITE_URL) => {
+  const origin = siteUrl.replace(/\/$/, '')
   const urls = pages().flatMap(page => {
     const alternates = LOCALES.map(locale => ({
       hreflang: locale.hreflang,
-      href: absoluteUrl(localizedPath(locale.prefix, page.path))
+      href: absoluteUrl(origin, localizedPath(locale.prefix, page.path))
     }))
-    const xDefault = absoluteUrl(localizedPath('', page.path))
+    const xDefault = absoluteUrl(origin, localizedPath('', page.path))
 
     return LOCALES.map(locale => {
-      const loc = absoluteUrl(localizedPath(locale.prefix, page.path))
+      const loc = absoluteUrl(origin, localizedPath(locale.prefix, page.path))
       const links = [
         ...alternates.map(alt => `    <xhtml:link rel="alternate" hreflang="${alt.hreflang}" href="${xmlEscape(alt.href)}" />`),
         `    <xhtml:link rel="alternate" hreflang="x-default" href="${xmlEscape(xDefault)}" />`

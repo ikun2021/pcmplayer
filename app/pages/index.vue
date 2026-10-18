@@ -8,6 +8,7 @@ import { messages } from '../../locales'
 
 // -- Internationalization Setup --
 const { locale, availableLocales, t, setLocaleMessage } = useI18n()
+const siteUrl = useRuntimeConfig().public.siteUrl
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 
@@ -69,7 +70,7 @@ useHead(() => ({
             'name': 'audio-converters',
             'applicationCategory': 'MultimediaApplication',
             'operatingSystem': 'All',
-            'url': 'https://audio-converters.net',
+            'url': siteUrl,
             'description': t('pageDescription'),
             'inLanguage': locale.value,
             'offers': {
@@ -1435,6 +1436,8 @@ const faqItems = computed(() => [
               {{ t('footerResources') }}
             </h6>
             <ul class="space-y-3 text-sm font-semibold text-stone-500">
+              <li><NuxtLink :to="localePath('/pcm-player')" class="hover:text-blue-600 transition-colors">{{ t('footerPcmPlayer') }}</NuxtLink></li>
+              <li><NuxtLink :to="localePath('/pcm-to-wav')" class="hover:text-blue-600 transition-colors">{{ t('footerPcmToWav') }}</NuxtLink></li>
               <li><NuxtLink :to="localePath('/blog')" class="hover:text-blue-600 transition-colors">{{ t('footerBlog') }}</NuxtLink></li>
               <li><a href="#audio-toolkit" class="hover:text-blue-600 transition-colors">{{ t('footerDocs') }}</a></li>
             </ul>

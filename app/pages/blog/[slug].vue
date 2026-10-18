@@ -20,8 +20,10 @@ const nextPost = currentIndex > 0 ? BLOG_POSTS[currentIndex - 1] : null
 const prevPost = currentIndex < BLOG_POSTS.length - 1 ? BLOG_POSTS[currentIndex + 1] : null
 
 useSeoMeta({
-  title: `${post.title} - audio-converters Blog`,
-  description: post.title
+  title: `${post.title} | PCM Player & Audio Converter Blog`,
+  description: post.description || post.title,
+  ogTitle: post.title,
+  ogDescription: post.description || post.title
 })
 </script>
 
@@ -86,6 +88,21 @@ useSeoMeta({
       </div>
     </article>
 
+    <div class="mt-16 rounded-3xl bg-blue-50/70 border border-blue-100 p-8 text-center">
+      <h2 class="text-2xl font-extrabold text-gray-900 mb-3">Try the Online PCM Player & Audio Converter</h2>
+      <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+        Play headerless PCM, convert PCM to WAV, or export 16kHz mono PCM for AI speech models — all locally in your browser.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <UButton :to="localePath('/pcm-player')" color="primary" size="lg" class="rounded-xl">
+          Online PCM Player
+        </UButton>
+        <UButton :to="localePath('/pcm-to-wav')" color="neutral" variant="outline" size="lg" class="rounded-xl">
+          PCM to WAV Converter
+        </UButton>
+      </div>
+    </div>
+
     <div class="mt-20 pt-12 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-8">
       <div class="flex items-center gap-4">
         <span class="text-sm font-bold text-gray-500">Share this insight:</span>
@@ -97,7 +114,7 @@ useSeoMeta({
       </div>
       
       <NuxtLink :to="localePath('/blog')" class="text-sm font-bold text-blue-600 hover:underline">
-        View All 20+ Articles
+        View All Articles
       </NuxtLink>
     </div>
   </UContainer>
