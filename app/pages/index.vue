@@ -7,10 +7,9 @@ import { fetchFile } from '@ffmpeg/util'
 import { messages } from '../../locales'
 
 // -- Internationalization Setup --
-const { locale, availableLocales, t, setLocaleMessage } = useI18n()
+const { locale, availableLocales, t, setLocale, setLocaleMessage } = useI18n()
 const siteUrl = useRuntimeConfig().public.siteUrl
 const localePath = useLocalePath()
-const switchLocalePath = useSwitchLocalePath()
 
 // Ensure all language messages are registered
 Object.keys(messages).forEach(code => {
@@ -35,11 +34,8 @@ const languageOptions = [
 const onLanguageChange = async (newLang: any) => {
   const code = typeof newLang === 'object' ? newLang?.value : newLang
   if (code && code !== locale.value) {
-    const nextPath = switchLocalePath(code)
-    if (nextPath) {
-      await navigateTo(nextPath)
-    }
-    locale.value = code
+    // Writes i18n_redirected cookie and navigates to the localized path
+    await setLocale(code)
   }
 }
 

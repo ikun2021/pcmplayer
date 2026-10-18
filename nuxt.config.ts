@@ -83,7 +83,11 @@ export default defineNuxtConfig({
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
-      redirectOn: 'root'
+      // First visit on unprefixed routes follows Accept-Language / navigator.
+      // Prefixed routes keep their locale. Cookie remembers manual choice.
+      redirectOn: 'no prefix',
+      fallbackLocale: 'en',
+      alwaysRedirect: false
     }
   },
   ui: {
